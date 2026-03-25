@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .filter {
+            text-align: center;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            width: 220px;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .price {
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            background: #25D366;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Our Products</h2>
+
+<!-- FILTER -->
+<div class="filter">
+    <form method="GET" action="/products">
+        <select name="category" onchange="this.form.submit()">
+            <option value="">All</option>
+            <option value="Plates">Plates</option>
+            <option value="Bowls">Bowls</option>
+            <option value="Cups">Cups</option>
+            <option value="Glassware">Glassware</option>
+            <option value="Serving">Serving</option>
+            <option value="Dinner Set">Dinner Set</option>
+            <option value="Kitchenware">Kitchenware</option>
+            <option value="Hotel Items">Hotel Items</option>
+        </select>
+    </form>
+</div>
+
+<!-- PRODUCTS -->
+<div class="container">
+    {% for item in products %}
+        <div class="card">
+
+           <img src="{{ item[4] }}">
+
+            <h4>{{ item[1] }}</h4>
+            <p>{{ item[2] }}</p>
+            <div class="price">₹{{ item[3] }}</div>
+
+            <a class="btn"
+               href="https://wa.me/919828601621?text=Hi%20I%20am%20interested%20in%20{{ item[1] }}"
+               target="_blank">
+               Order
+            </a>
+
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
